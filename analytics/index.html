@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Analytics Reporting API V4</title>
+    <meta name="google-signin-client_id" content="425967133868-3n8753senpamrjbv4i8vlea3drv27rm4.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+  </head>
+  <body>
+
+  
+  <p>
+    <!-- Кнопка входа. В случае успеха будет запущена функция queryReports(). -->
+   <div class="g-signin2" data-onsuccess="queryReports"></div>
+  </p>
+  <canvas id="ChartOfNumbers" width="200" height="30"></canvas>
+  <canvas id="ChartOfPercent" width="200" height="30"></canvas>
+  <canvas id="ChartOfTimeLine" width="200" height="30"></canvas>
+
+  <div class="content-placeholder"></div>
+
+  <p>Источники трафика</p>
+  <input type="radio" name="traffic_src" id="all"            value=0 >Все<br> 
+  <input type="radio" name="traffic_src" id="organic_search" value=1 >Поиск<br>
+  <input type="radio" name="traffic_src" id="social"         value=2 >Социальный<br>
+  <input type="radio" name="traffic_src" id="referral"       value=3 >Ссылки<br>
+  <input type="radio" name="traffic_src" id="direct"         value=4 >Реклама<br>
+  <input type="radio" name="traffic_src" id="other"          value=5 >Другое<br>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+
+  <script src="js/lib/lib.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Загрузка клиента JavaScript API и библиотеки Sign-In. -->
+  <script src="https://apis.google.com/js/client:platform.js"></script>
+  
+  <script id="address-template" type="text/x-handlebars-template">
+    <p>You can find me in {{city}}. My address is {{number}} {{street}}.</p>
+  </script>
+
+    <script type="text/javascript">
+    //var tbl =  ;
+    var theTemplateScript = document.getElementById('address-template').value;
+    console.log(theTemplateScript);
+
+    // Compile the template
+    var theTemplate = Handlebars.compile(theTemplateScript);
+
+    // Define our data object
+    var context={
+      "city": "London",
+      "street": "Baker Street",
+      "number": "221B"
+    };
+
+    // Pass our data to the template
+    var theCompiledHtml = theTemplate(context);
+
+    // Add the compiled html to the page
+    document.getElementById('content-placeholder').innerHTML = theCompiledHtml;
+  </script>
+
+  </body>
+</html>
